@@ -1,0 +1,12 @@
+.detail-main {
+  height: 90%;
+}
+
+img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.detail-item {
+  padding-left:50px;
+}

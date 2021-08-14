@@ -1,0 +1,46 @@
+<div class="cart-main" *ngIf="carts; else emptyCartTemplate" fxLayoutAlign="center center" fxLayout.xs="column">
+  <div  fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="column" fxFlex="50%" fxLayoutAlign="space-between center">
+        <mat-card fxLayout="row wrap" fxFlexAlign="stretch" fxLayoutGap="20px grid">
+          <app-shopping-cart-item fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="25%" *ngFor="let cart of carts"  [cart] = 'cart'></app-shopping-cart-item>
+        </mat-card>
+      </div>
+      <form (ngSubmit)="submitCart()" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Standard form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <!--
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Fill form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Outline form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        -->
+      </form>
+  </div>
+</div>
+
+<ng-template #emptyCartTemplate>
+  Cart is empty!
+  <div style="padding-top:15px">
+    <a routerLink="/product-list" style="text-decoration: none;">
+      &larr;Back to product list
+    </a>
+  </div>
+</ng-template>

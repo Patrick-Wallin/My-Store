@@ -1,0 +1,35 @@
+<div class="detail-main" *ngIf="product; else notFoundProductTemplate" fxLayoutAlign="center center" fxLayout.xs="column">
+  <div  fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="column" fxFlex="50%" fxLayoutAlign="space-between center">
+          <img class="product-image" src='{{product.url}}'>
+      </div>
+      <form (ngSubmit)="submitProduct()" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
+          <div><b>{{product.name}}</b></div>
+          <div>${{product.price}}</div>
+          <div>{{product.description}}</div>
+
+          <div style="display: flex; flex-direction: column;">
+            <mat-form-field>
+              <mat-label>Quantity</mat-label>
+              <mat-select [(ngModel)]="selectedQuantity" name="quantity">
+                <mat-option *ngFor="let n of quantityList" [value]="n">
+                  {{n}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button type="submit">Add To Cart</button>
+
+
+            <div style="padding-top:15px">
+            <a routerLink="/product-list" style="text-decoration: none;">
+              &larr;Back to product list
+            </a>
+          </div>
+          </div>
+        </form>
+  </div>
+</div>
+
+<ng-template #notFoundProductTemplate>
+  Unable to show product detail since the product is not found.
+</ng-template>
