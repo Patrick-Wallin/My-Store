@@ -4,8 +4,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { AppMaterialModule } from '../app-material/app-material.module';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -15,9 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   imports: [
     CommonModule,
-    AppMaterialModule,
-    FormsModule,
-    MatSelectModule
+    AppMaterialModule
   ]
 })
 export class ProductsModule { }

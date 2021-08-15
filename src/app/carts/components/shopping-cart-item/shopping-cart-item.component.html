@@ -1,1 +1,25 @@
-<p>shopping-cart-item works!</p>
+<mat-card class="mat-elevation-z0">
+  <mat-card-content>
+    <div class="flex-row">
+      <div fxLayoutAlign="center start" fxLayout="column">
+        <img src="{{ cart.url }}" />
+      </div>
+
+      <div fxLayoutAlign="center start" fxLayout="column" fxLayoutGap="15px">
+        <div><b>{{cart.name}}</b></div>
+        <div>${{cart.price}}</div>
+        <mat-form-field>
+          <mat-label>Quantity</mat-label>
+          <mat-select [(ngModel)]="selectedQuantity" name="quantity" [(value)]="selectedQuantity" (selectionChange)="changeQuantity()">
+            <mat-option *ngFor="let n of quantityList" [value]="n">
+              {{n}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>{{cart.name}} Total: ${{subtotal}}</div>
+        <button mat-raised-button color="primary">Remove</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+

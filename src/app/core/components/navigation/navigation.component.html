@@ -3,11 +3,11 @@
   <span class="spacer"></span>
   <div>
     <button mat-button routerLink='/product-list'>
-      <mat-icon aria-hidden="false" aria-label="Example thumbs up SVG icon">store</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example thumbs up SVG icon" style="margin-right:10px">store</mat-icon>
       Product List
     </button>
     <button mat-button routerLink='/cart'>
-      <mat-icon aria-hidden="false" aria-label="Example thumbs up SVG icon">shopping_cart</mat-icon>
+      <mat-icon matBadge="{{totalQuantity}}" matBadgeColor="accent" style="margin-right:10px">shopping_cart</mat-icon>
       Cart
     </button>
   </div>

@@ -14,44 +14,14 @@
   <mat-card-actions>
     <mat-form-field>
       <mat-label>Quantity</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="selectedQuantity" name="quantity" [(value)]="selectedQuantity">
         <mat-option *ngFor="let n of quantityList" [value]="n">
           {{n}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!--
-    <div style="vertical-align: middle;">
-  <label>Quantity</label>
-  <select [(ngModel)]="selectedQuantity" style="width:100px;">
-    <option  *ngFor="let n of quantityList" [ngValue]="n">{{n}}</option>
-  </select>
-</div>
--->
   <div fxFlex></div>
-  <button mat-raised-button>Add To Cart</button>
+  <button mat-raised-button color="primary" (click)="addToCart()">Add To Cart</button>
 
   </mat-card-actions>
 </mat-card>
-
-<!--
-<mat-card>
-  <a routerLink="/product-detail/{{product.id}}">
-  <img mat-card-image class="product-image" src="{{product.url}}">
-  </a>
-  <mat-card-content>
-  <h4>{{product.name}}</h4>
-  <div fxFlex></div>
-  <h4>${{product.price}}</h4>
-</mat-card-content>
-<mat-card-actions fxLayoutAlign="center center">
-
-  <h4>Quantity:</h4>
-  <select [(ngModel)]="selectedQuantity" style="width:100px;">
-    <option  *ngFor="let n of quantityList" [ngValue]="n">{{n}}</option>
-  </select>
-  <div fxFlex></div>
-  <button>Add To Cart</button>
-</mat-card-actions>
-</mat-card>
--->

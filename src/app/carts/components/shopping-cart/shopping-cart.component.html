@@ -1,46 +1,51 @@
-<div class="cart-main" *ngIf="carts; else emptyCartTemplate" fxLayoutAlign="center center" fxLayout.xs="column">
+<div class="cart-main" *ngIf="carts.length > 0; else emptyCartTemplate" fxLayoutAlign="center center" fxLayout.xs="column">
   <div  fxLayout="row" fxLayoutAlign="center center">
-      <div fxLayout="column" fxFlex="50%" fxLayoutAlign="space-between center">
-        <mat-card fxLayout="row wrap" fxFlexAlign="stretch" fxLayoutGap="20px grid">
-          <app-shopping-cart-item fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="25%" *ngFor="let cart of carts"  [cart] = 'cart'></app-shopping-cart-item>
-        </mat-card>
+      <div fxLayout="column" fxFlex="50%" fxLayoutGap="32px">
+        <app-shopping-cart-item fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="25%" *ngFor="let cart of carts"  [cart] = 'cart' (updateTotal)="updateTotal($event)"></app-shopping-cart-item>
       </div>
-      <form (ngSubmit)="submitCart()" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
-        <p>
-          <mat-form-field appearance="standard">
-            <mat-label>Standard form field</mat-label>
-            <input matInput placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </p>
-        <!--
-        <p>
-          <mat-form-field appearance="fill">
-            <mat-label>Fill form field</mat-label>
-            <input matInput placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Outline form field</mat-label>
-            <input matInput placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </p>
-        -->
-      </form>
+      <!-- <div fxFlex fxLayout="column" style="height:100%" fxLayoutAlign="start start" > -->
+        <!-- <form (ngSubmit)="submitCart()"> -->
+          <form #form="ngForm" (ngSubmit)="submitCart()" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
+            <div style="display: flex; flex-direction: column;">
+              <div style="margin-bottom:15px">Total: ${{total_price}}</div>
+              <mat-form-field appearance="outline">
+                <mat-label>Full name</mat-label>
+                <input matInput placeholder="Full name" [(ngModel)]="full_name" name="full_name" required minlength="3">
+                <mat-icon matSuffix>person_pin</mat-icon>
+                <mat-hint>minimum 3 characters</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" placeholder="Address" [(ngModel)]="address" name="address" required minlength="6">
+                <mat-icon matSuffix>home</mat-icon>
+                <mat-hint>minimum 6 characters</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>Credit card number</mat-label>
+                <input matInput type="number" placeholder="Credit card number" [(ngModel)]="credit_card_number" name="credit_card_number" required minlength="16">
+                <mat-icon matSuffix>credit_card</mat-icon>
+                <mat-hint><p>minimum 16 digits</p>We will never share your payment details with anyone else.</mat-hint>
+              </mat-form-field>
+
+
+              <button mat-raised-button color="primary" type="submit" style="margin-top:50px" [disabled]="form.invalid">Submit</button>
+            </div>
+        </form>
+    <!-- </div> -->
   </div>
 </div>
 
 <ng-template #emptyCartTemplate>
-  Cart is empty!
-  <div style="padding-top:15px">
-    <a routerLink="/product-list" style="text-decoration: none;">
-      &larr;Back to product list
-    </a>
+  <div class="empty-cart-message">
+    Cart is empty!
+    <div>
+    <button mat-raised-button color="primary" style="margin-top:10px" routerLink="/">Back to product list</button>
+    </div>
   </div>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/Product';
 import { ProductsService } from '../../services/products.service';
@@ -27,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   submitProduct() : void {
-    this.productsService.addToCart(this.product.id, this.selectedQuantity, this.product.price, this.product.name);
+    this.productsService.addToCart(this.product.id, this.selectedQuantity, this.product.price, this.product.name, this.product.url);
     this.matSnackBar.open(this.selectedQuantity + " of " + this.product.name + " has been added to cart.", 'Ok', {
       horizontalPosition: 'center',
       verticalPosition: 'top'
@@ -39,7 +39,6 @@ export class ProductDetailComponent implements OnInit {
       const products = result.filter((product) => product.id == parseInt(this.productId));
       if(products.length > 0) {
         this.product = products[0];
-        console.log(this.product);
       }
     });
   }

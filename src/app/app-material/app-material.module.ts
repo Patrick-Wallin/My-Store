@@ -7,12 +7,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -25,12 +30,18 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatBadgeModule
   ],
   exports: [
     FlexLayoutModule,
@@ -40,11 +51,17 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatBadgeModule
   ]
 })
 export class AppMaterialModule { }

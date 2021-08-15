@@ -9,14 +9,19 @@ import { Cart } from '../../carts/models/Cart';
 })
 export class ProductsService {
   cartStorage = window.localStorage;
+  total_quantity: number = 0;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    //this.getTotalNumberOfQuantity().subscribe((value) => {
+     // this.total_quantity = value;
+    //});
+  }
 
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>("assets/data/data.json");
   }
 
-  addToCart(product_id: number, quantity: number, price: number, name: string): void {
+  addToCart(product_id: number, quantity: number, price: number, name: string, url: string): void {
     const listOfProductsInCart = this.getListOfProductsThatAreInCart();
     let cart: Cart = new Cart();
 
@@ -24,6 +29,7 @@ export class ProductsService {
     cart.quantity = quantity;
     cart.name = name;
     cart.price = price;
+    cart.url = url;
 
     const productInCart = listOfProductsInCart.filter((cart) => cart.product_id == product_id);
     if(productInCart.length > 0) {
@@ -34,6 +40,23 @@ export class ProductsService {
     }else {
       listOfProductsInCart.push(cart);
     }
+
+    this.cartStorage.setItem('cart', JSON.stringify(listOfProductsInCart));
+  }
+
+  updateToCart(updatedCart: Cart): void {
+    const listOfProductsInCart = this.getListOfProductsThatAreInCart();
+    const productInCart = listOfProductsInCart.filter((cart) => cart.product_id == updatedCart.product_id);
+    if(productInCart.length > 0) {
+      const index = listOfProductsInCart.findIndex((cart) => cart.product_id === updatedCart.product_id);
+      listOfProductsInCart[index] = updatedCart;
+    }
+
+    this.cartStorage.setItem('cart', JSON.stringify(listOfProductsInCart));
+  }
+
+  clearCart() : void {
+    this.cartStorage.setItem('cart','');
   }
 
   getListOfProductsThatAreInCart() : Cart[] {
@@ -44,6 +67,19 @@ export class ProductsService {
     }
 
     return [];
+  }
+
+  getTotalNumberOfQuantity(): Observable<number> {
+    const quantityObservable = new Observable<number>((observer) => {
+      // this.total_quantity = 0;
+      let quantity : number = 0;
+
+      const listOfProducts = this.getListOfProductsThatAreInCart();
+      const reducer = (accumulator: number, currentValue: Cart) => accumulator + currentValue.quantity;
+      quantity = listOfProducts.reduce(reducer, 0);
+    });
+
+    return quantityObservable;
   }
 
   getProductDetail(id : number): Product  {
