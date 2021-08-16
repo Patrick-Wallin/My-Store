@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Product } from '../models/Product';
 import { Cart } from '../../carts/models/Cart';
 
@@ -10,12 +10,10 @@ import { Cart } from '../../carts/models/Cart';
 export class ProductsService {
   cartStorage = window.localStorage;
   total_quantity: number = 0;
+  quantityObservable: Subject<number> = new Subject<number>();
+  totalQuantityObservable = this.quantityObservable.asObservable();
 
-  constructor(private httpClient: HttpClient) {
-    //this.getTotalNumberOfQuantity().subscribe((value) => {
-     // this.total_quantity = value;
-    //});
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>("assets/data/data.json");
@@ -42,6 +40,7 @@ export class ProductsService {
     }
 
     this.cartStorage.setItem('cart', JSON.stringify(listOfProductsInCart));
+    this.getTotalNumberOfQuantity();
   }
 
   updateToCart(updatedCart: Cart): void {
@@ -53,10 +52,23 @@ export class ProductsService {
     }
 
     this.cartStorage.setItem('cart', JSON.stringify(listOfProductsInCart));
+    this.getTotalNumberOfQuantity();
   }
 
   clearCart() : void {
     this.cartStorage.setItem('cart','');
+  }
+
+  removeProductFromCart(removedProduct: Cart) : void {
+    const listOfProductsInCart = this.getListOfProductsThatAreInCart();
+    const productInCart = listOfProductsInCart.filter((cart) => cart.product_id == removedProduct.product_id);
+    if(productInCart.length > 0) {
+      const index = listOfProductsInCart.findIndex((cart) => cart.product_id === removedProduct.product_id);
+      listOfProductsInCart.splice(index,1);
+    }
+
+    this.cartStorage.setItem('cart', JSON.stringify(listOfProductsInCart));
+    this.getTotalNumberOfQuantity();
   }
 
   getListOfProductsThatAreInCart() : Cart[] {
@@ -69,6 +81,7 @@ export class ProductsService {
     return [];
   }
 
+  /*
   getTotalNumberOfQuantity(): Observable<number> {
     const quantityObservable = new Observable<number>((observer) => {
       // this.total_quantity = 0;
@@ -80,6 +93,15 @@ export class ProductsService {
     });
 
     return quantityObservable;
+  }
+  */
+  getTotalNumberOfQuantity(): void {
+    let quantity : number = 0;
+
+    const listOfProducts = this.getListOfProductsThatAreInCart();
+    const reducer = (accumulator: number, currentValue: Cart) => accumulator + currentValue.quantity;
+    quantity = listOfProducts.reduce(reducer, 0);
+    this.quantityObservable.next(quantity);
   }
 
   getProductDetail(id : number): Product  {

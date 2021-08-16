@@ -32,7 +32,8 @@ export class ProductItemComponent implements OnInit {
     this.productsService.addToCart(this.product.id, this.selectedQuantity, this.product.price, this.product.name, this.product.url);
     this.matSnackBar.open(this.selectedQuantity + " of " + this.product.name + " has been added to cart.", 'Ok', {
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'top',
+      duration: 5000
     });
   }
 }

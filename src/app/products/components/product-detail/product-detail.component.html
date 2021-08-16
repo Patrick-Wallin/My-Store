@@ -5,7 +5,7 @@
       </div>
       <form (ngSubmit)="submitProduct()" class="detail-item" fxFlex fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px grid">
           <div><b>{{product.name}}</b></div>
-          <div>${{product.price}}</div>
+          <div>{{product.price | currency }}</div>
           <div>{{product.description}}</div>
 
           <div style="display: flex; flex-direction: column;">
@@ -18,12 +18,10 @@
               </mat-select>
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit">Add To Cart</button>
-
-
             <div style="padding-top:15px">
-            <a routerLink="/product-list" style="text-decoration: none;">
-              &larr;Back to product list
-            </a>
+              <a routerLink="/product-list" style="text-decoration: none;">
+                &larr;Back to product list
+              </a>
           </div>
           </div>
         </form>

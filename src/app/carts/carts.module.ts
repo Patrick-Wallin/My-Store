@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopping-cart-item.component';
 import { DialogShoppingCart } from './components/shopping-cart/shopping-cart.component';
+import { DialogShoppingProductRemoveCart } from './components/shopping-cart-item/shopping-cart-item.component';
 import { AppMaterialModule } from '../app-material/app-material.module';
 import { ConfirmationOrderComponent } from './components/confirmation-order/confirmation-order.component';
 
@@ -11,6 +12,7 @@ import { ConfirmationOrderComponent } from './components/confirmation-order/conf
     ShoppingCartComponent,
     ShoppingCartItemComponent,
     DialogShoppingCart,
+    DialogShoppingProductRemoveCart,
     ConfirmationOrderComponent
   ],
   imports: [

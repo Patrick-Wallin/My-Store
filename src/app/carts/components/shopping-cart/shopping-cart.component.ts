@@ -36,7 +36,7 @@ export class ShoppingCartComponent implements OnInit {
   calculateTotalPrice(): void{
     const reducer = (accumulator: number, currentValue: Cart) => accumulator + (currentValue.price * currentValue.quantity);
     this.total_price = this.carts.reduce(reducer, 0);
-    this.total_price = Number(this.total_price.toFixed(2));
+    this.total_price = Number.parseFloat(this.total_price.toFixed(2));
   }
 
   updateTotal(cart: Cart): void {
@@ -57,7 +57,6 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 }
-
 
 @Component({
   selector: 'dialog-shopping-cart',

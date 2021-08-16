@@ -2,22 +2,13 @@
   display: flex;
   flex-direction: row;
 }
+
 .flex-row > div {
     flex: 50%;
     padding: 10px;
-  }
-
-  img {
-    border-radius: 10px;
-    width: 100%;
-  }
-
-  /*
-.temp {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
 }
 
-*/
+img {
+  border-radius: 10px;
+  width: 100%;
+}

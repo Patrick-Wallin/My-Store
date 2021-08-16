@@ -16,8 +16,8 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div>{{cart.name}} Total: ${{subtotal}}</div>
-        <button mat-raised-button color="primary">Remove</button>
+        <div>{{cart.name}} Total: {{subtotal | currency }}</div>
+        <button mat-raised-button (click)="removeProduct()" color="primary">Remove</button>
       </div>
     </div>
   </mat-card-content>

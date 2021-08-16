@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/products/services/products.service';
+import { Cart } from '../../../carts/models/Cart';
 
 @Component({
   selector: 'app-navigation',
@@ -9,19 +10,13 @@ import { ProductsService } from 'src/app/products/services/products.service';
 export class NavigationComponent implements OnInit {
   totalQuantity : number = 0;
 
-  constructor(private productsService : ProductsService) {
-
-
-  }
+  constructor(private productsService : ProductsService) {}
 
   ngOnInit(): void {
-    console.log('hello navigation');
-    //this.totalQuantity = this.productsService.total_quantity;
-    this.productsService.getTotalNumberOfQuantity().subscribe(quantity => {
+    this.productsService.totalQuantityObservable.subscribe(quantity => {
       this.totalQuantity = quantity;
-      console.log(this.totalQuantity);
     });
-    console.log(this.totalQuantity);
+    this.productsService.updateToCart(new Cart());
   }
 
 }

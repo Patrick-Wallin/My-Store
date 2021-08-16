@@ -1,27 +1,57 @@
-# MyStore
+# My-Store Project
+This is an Angular 'Store' project that is building in Angular.  It would show the list of product while this web application has the following functionality:
+- Go to detail of the product
+- Add products to cart from list of product or detail product page
+- View products in cart
+- Delete product from cart
+- Process the order in cart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+![Screenshot](../master/screenshots/frontscreen.png)
 
-## Development server
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies](#technologies)
+* [Install dependencies](#install-dependencies)
+* [Start Server](#start-server)
+* [Purpose of this project](#purpose-of-this-project)
+* [Contact](#contact)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## General Information
+Patrick would gain his experience developing this Angular's project while learning the following different things:
+- Components
+- Modules
+- Router
+- Communication between components (Parent-Child in either direction)
+- Service
+- Fetch data via http
+- Observable
+- Binding between component class and html
+- Form validation
 
-## Code scaffolding
+## Technologies 
+- TypeScript
+- NPM
+- NodeJS
+- Angular
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Install dependencies
+Clone this repository and open your terminal and go to the root of the directory of this project.
+Then execute the following at your command or terminal:
+```
+npm install
+```
 
-## Build
+## Start server
+Open your terminal and go to the root of the directory of this project.
+Then run the following at your command or terminal:
+```
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+It will run the web application at http://localhost:4200.  Please go to the browser and type it in the address. It should show as the screenshot above.
 
-## Running unit tests
+## Purpose of this project
+This is one of the Full Stack JavaScript Developer's project for Udacity.  It gives Patrick an opportunity to gain experience and knowledge of the following: TypeScript, Angular, Modules, Router, Components, Service, Observable, and form validation.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contact
+Created by [Patrick Wallin](https://www.linkedin.com/in/patrick-wallin) - feel free to contact me!
